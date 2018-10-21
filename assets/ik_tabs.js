@@ -142,7 +142,7 @@
 	        ind = event.data.index,
 	        $tabs,
 	        $panels,
-	        next; 
+	        next;
 
 	    $elem = plugin.element;
 	    $tabs = plugin.tabs;
@@ -159,7 +159,7 @@
 	        case ik_utils.keys.right:
 	        case ik_utils.keys.down:
 	            next = (ind < $tabs.length - 1) ? ind + 1 : $tabs.length - 1;
-							// plugin.selectTab({data:{'plugin': plugin, 'index': next}});
+							/// plugin.selectTab({data:{'plugin': plugin, 'index': next}});
 							event.data.index = next;
 							plugin.selectTab(event);
 
