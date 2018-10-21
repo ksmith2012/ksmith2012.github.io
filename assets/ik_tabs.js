@@ -142,7 +142,7 @@
 	        ind = event.data.index,
 	        $tabs,
 	        $panels,
-	        next;
+	        next; 
 
 	    $elem = plugin.element;
 	    $tabs = plugin.tabs;
