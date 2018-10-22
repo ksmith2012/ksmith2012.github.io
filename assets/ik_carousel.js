@@ -2,8 +2,8 @@
 
 	var pluginName = 'ik_carousel',
 		defaults = { // default settings
-      'instructions': 'Carousel widget. Use left and reight arrows to navigate between slides.',
-			'animationSpeed' : 3000
+			'animationSpeed' : 3000,
+			'instructions': 'Carousel widget. Use left and reight arrows to navigate between slides.'
 		};
 
 	/**
@@ -40,6 +40,7 @@
 				'tabindex': 0, // add into the tab order
 				'aria-describedby': id + '_instructions' // associate with instructions
 			})
+
 			.addClass('ik_carousel')
 			.on('keydown', {'plugin': plugin}, plugin.onKeyDown)
 			.on('mouseenter', {'plugin': plugin}, plugin.stopTimer)
@@ -48,9 +49,9 @@
 			.on('focusout', {'plugin': plugin}, plugin.startTimer)
 
 		$controls = $('<div/>')
-			.attr({
+		.attr({
         'aria-hidden': 'true' // hide controls from screen readers
-    	})
+    })
 			.addClass('ik_controls')
 			.appendTo($elem);
 
@@ -64,15 +65,6 @@
 			.on('click', {'plugin': plugin, 'slide': 'right'}, plugin.gotoSlide)
 			.appendTo($controls);
 
-			$('<div/>') // add instructions for screen reader users
-		     .attr({
-		         'id': id + '_instructions',
-		         'aria-hidden': 'true'
-		     })
-		     .text(this.options.instructions)
-		     .addClass('ik_readersonly')
-		     .appendTo($elem);
-
 		$navbar = $('<ul/>')
 			.addClass('ik_navbar')
 			.appendTo($controls);
@@ -85,17 +77,27 @@
 				$me = $(el);
 				$src = $me.find('img').remove().attr('src');
 
-				$me.attr({
-    				'aria-hidden': 'true' // hide images from screen readers
-    			})
-					.css({
+				$me.css({
 						'background-image': 'url(' + $src + ')'
+					});
+
+				$me.attr({
+					    'aria-hidden': 'true' // hide images from screen readers
 					});
 
 				$('<li/>')
 					.on('click', {'plugin': plugin, 'slide': i}, plugin.gotoSlide)
 					.appendTo($navbar);
 			});
+
+		$('<div/>') // add instructions for screen reader users
+		    .attr({
+		        'id': id + '_instructions',
+		        'aria-hidden': 'true'
+		    })
+		    .text(this.options.instructions)
+		    .addClass('ik_readersonly')
+		    .appendTo($elem);
 
 		plugin.navbuttons = $navbar.children('li');
 		plugin.slides.first().addClass('active');
@@ -196,11 +198,11 @@
 			dir = event.data.dir;
 
 			active
-				.attr({
-					'aria-hidden': 'true'
-				})
-				.off( ik_utils.getTransitionEventName() )
-				.removeClass(direction + ' active');
+			.attr({
+	        'aria-hidden': 'true'
+	    })
+			.off( ik_utils.getTransitionEventName() )
+			.removeClass(direction + ' active');
 
 			next
 				.attr({
@@ -241,7 +243,6 @@
 	            break;
 	        }
 	    }
-
 
 	$.fn[pluginName] = function ( options ) {
 
